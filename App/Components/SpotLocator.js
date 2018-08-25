@@ -21,13 +21,12 @@ export default class SpotLocator extends React.Component {
 
   componentDidMount(){
     getCurrentLocation().then(location => {
-      console.log(JSON.stringify(location));
       this.setState({
         currentRegion: {
           latitude: location.coords.latitude,
           longitude: location.coords.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitudeDelta: 0.004,
+          longitudeDelta: 0.004,
         }
       });
       this._mapView.animateToRegion(this.state.currentRegion, 3000);
