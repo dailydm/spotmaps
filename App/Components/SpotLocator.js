@@ -1,7 +1,7 @@
 import React from 'react';
 import { MapView } from 'expo';
 import PropTypes from 'prop-types';
-import { getCurrentLocation } from '../Services/LocationService';
+import { startLocationTracking } from '../Services/LocationService';
 
 export default class SpotLocator extends React.Component {
 
@@ -17,20 +17,23 @@ export default class SpotLocator extends React.Component {
       },
       currentRegion: null
     };
+    this.updateLocation = this.updateLocation.bind(this);
   }
 
   componentDidMount(){
-    getCurrentLocation().then(location => {
-      this.setState({
-        currentRegion: {
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude,
-          latitudeDelta: 0.004,
-          longitudeDelta: 0.004,
-        }
-      });
-      this._mapView.animateToRegion(this.state.currentRegion, 3000);
-    })
+    startLocationTracking({}, this.updateLocation)
+  }
+
+  updateLocation(location){
+    this.setState({
+      currentRegion: {
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.004,
+        longitudeDelta: 0.004,
+      }
+    });
+    this._mapView.animateToRegion(this.state.currentRegion, 3000);
   }
 
   render(){
@@ -40,6 +43,7 @@ export default class SpotLocator extends React.Component {
         style={{ flex: 1 }}
         ref={ mapView => this._mapView = mapView}
         initialRegion={ initialRegion }
+        showsUserLocation={true}
       />
     );
   }
