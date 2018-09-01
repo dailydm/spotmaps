@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
-
-export default colors = {
+const colors = {
   lightGrey: '#ecf0f1',
   blue: '#3f4afe',
-}
+};
+
+export default colors;

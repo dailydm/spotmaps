@@ -1,10 +1,12 @@
 import { Location, Permissions } from 'expo';
 
-export const startLocationTracking = async (options, callback) => {
-  let { status } = await Permissions.askAsync(Permissions.LOCATION);
+const startLocationTracking = async (options, callback) => {
+  const { status } = await Permissions.askAsync(Permissions.LOCATION);
   if (status !== 'granted') {
     // TODO return error
   }
-  let location = await Location.watchPositionAsync(options, callback);
+  const location = await Location.watchPositionAsync(options, callback);
   return location;
-}
+};
+
+export default startLocationTracking;

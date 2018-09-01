@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { Constants } from 'expo';
 
-import Colors from "./Colors";
+import Colors from './Colors';
 
 export default StyleSheet.create({
   container: {
@@ -10,5 +10,5 @@ export default StyleSheet.create({
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
     backgroundColor: Colors.lightGrey,
-  }
-})
+  },
+});

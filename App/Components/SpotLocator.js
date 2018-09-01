@@ -1,59 +1,48 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import PropTypes from 'prop-types';
+import { TouchableOpacity, View } from 'react-native';
 import { MapView } from 'expo';
-import { Button, Icon } from 'native-base';
+import { Icon } from 'native-base';
 import styles from './Styles/SpotLocatorStyles';
-import { startLocationTracking } from '../Services/LocationService';
+import startLocationTracking from '../Services/LocationService';
 
 export default class SpotLocator extends React.Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
-    let _mapView;
     this.state = {
-      initialRegion: {
-        latitude: 37.78825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      },
-      currentRegion: null
+      currentRegion: null,
     };
     this.updateLocation = this.updateLocation.bind(this);
   }
 
-  componentDidMount(){
-    startLocationTracking({}, this.updateLocation)
+  componentDidMount() {
+    startLocationTracking({}, this.updateLocation);
   }
 
-  updateLocation(location){
+  updateLocation(location) {
     this.setState({
       currentRegion: {
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
         latitudeDelta: 0.004,
         longitudeDelta: 0.004,
-      }
+      },
     });
-    this._mapView.animateToRegion(this.state.currentRegion, 3000);
   }
 
-  render(){
-    const { initialRegion } = this.state
+  render() {
+    const { currentRegion } = this.state;
     return (
       <View style={styles.container}>
         <MapView
           provider="google"
-          showsUserLocation={true}
+          showsUserLocation
           style={styles.map}
-          ref={ mapView => this._mapView = mapView}
-          initialRegion={ initialRegion }
+          region={currentRegion}
         />
         <TouchableOpacity style={styles.newButton}>
-         <Icon name="add"  size={20} style={styles.newButtonIcon} />
-       </TouchableOpacity>
-     </View>
+          <Icon name="add" size={20} style={styles.newButtonIcon} />
+        </TouchableOpacity>
+      </View>
     );
   }
 }

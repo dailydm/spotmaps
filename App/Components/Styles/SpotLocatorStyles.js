@@ -13,20 +13,20 @@ export default StyleSheet.create({
   },
 
   newButton: {
-    borderWidth:1,
-    borderColor:'rgba(0,0,0,0.2)',
-    alignItems:'center',
-    justifyContent:'center',
-    width:50,
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 50,
     position: 'absolute',
     bottom: 25,
     right: 15,
-    height:50,
+    height: 50,
     backgroundColor: Colors.blue,
-    borderRadius:100,
+    borderRadius: 100,
   },
 
   newButtonIcon: {
-    color: "white",
-  }
-})
+    color: 'white',
+  },
+});
