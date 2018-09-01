@@ -66,7 +66,7 @@ export default class SpotLocator extends React.Component {
                borderRadius:100,
              }}
          >
-         <Icon name="add"  size={20} iconStyle={{color: "white"}} />
+         <Icon name="add"  size={20} style={{color: "white"}} />
        </TouchableOpacity>
      </View>
     );
