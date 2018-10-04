@@ -9,4 +9,6 @@ const startLocationTracking = async (options, callback) => {
   return location;
 };
 
-export default startLocationTracking;
+export default {
+  startLocationTracking,
+};
